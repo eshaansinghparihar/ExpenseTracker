@@ -4,7 +4,7 @@ import Navigation from './Navigation';
 function Dashboard() {
   return (
     <div className="container">
-      <Navigation/>
+      {/* <Navigation/> */}
       Dashboard
     </div>
   );

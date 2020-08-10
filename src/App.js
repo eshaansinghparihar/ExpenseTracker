@@ -9,24 +9,12 @@ import Signin from './components/Signin';
 import Signup from './components/Signup';
 import TransactionDetails from './components/TransactionDetails';
 import Navigation from './components/Navigation'
+import DailyTransaction from './components/DailyTransactions';
+import MonthlyTransaction from './components/MonthlyTransaction';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
-
-const AddTransactionPage=()=>{
-  return(<AddTransaction/>);
-}
-
-const TransactionDetailsPage=()=>{
-  return(<TransactionDetails/>);
-}
-
-const DashboardPage=()=>{
-  return(<Dashboard/>);
-}
-
-
 function App() {
   const [user,setUser]=useState({});
   useEffect(()=>{
@@ -38,22 +26,31 @@ function App() {
     <BrowserRouter>
     <div className="App">
      {user?
+      <div>
+      <Navigation/>
+       <div>
      <Switch>
-        <Route exact path="/dashboard" component={DashboardPage}>
+        <Route exact path="/dashboard" >
           <Dashboard/>
         </Route>
-        <Route exact path='/addTransaction' component={AddTransactionPage}>
+        <Route exact path='/addTransaction' >
         <AddTransaction/>
         </Route>
-        <Route path='/' component={TransactionDetailsPage}>
+        <Route exact path='/dailyTransaction' >
+        <DailyTransaction/>
+        </Route>
+        <Route exact path='/monthlyTransaction' >
+        <MonthlyTransaction/>
+        </Route>
+        <Route path='/' >
         <TransactionDetails/>
         </Route>
         <Redirect to="/" />
      </Switch>
+     </div>
+     </div>
      :
-     <div>
-       <Navigation/>
-       <div>
+    
         <Switch>
         <Route exact path="/signup" >
           <Signup/>
@@ -63,8 +60,6 @@ function App() {
         </Route>
         <Redirect to="/" />
         </Switch>
-        </div>
-     </div>
      }
     </div>
     </BrowserRouter>

@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   form: {
     // width: '100vh'
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
     marginLeft:theme.spacing(3),
     marginRight:theme.spacing(3)
   },
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   paper: {
-    marginTop: theme.spacing(2),
+    marginTop:theme.spacing(2),
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 function AddTransaction(){
   const classes = useStyles();
 
-  const [amount, setAmount]=useState(0);
+  const [amount, setAmount]=useState('');
   const [details, setDetails]=useState('');
   const [type, setType]=useState('');
   const [mode, setMode]=useState('');
@@ -53,7 +53,7 @@ function AddTransaction(){
         transaction:firebase.firestore.FieldValue.arrayUnion({amount:amount,details:details, type:type ,mode:mode, category:category, createdAt: Date.now()}),
         }).catch(error=>setError(error.message))
     }
-    setAmount(0);
+    setAmount('');
     setDetails('');
     setType('');
     setMode('');
@@ -183,7 +183,7 @@ function AddTransaction(){
         </Select>
       </FormControl>
           <Typography component="h5" variant="h6" color="error">
-          {/* {this.state.error ? this.state.error : ''} */}
+          {error? error : ''}
           </Typography>
           <Button
             type="submit"
@@ -208,7 +208,7 @@ function AddTransactionComponent() {
 if(userid){
   return(
     <div>
-    <Navigation />
+    {/* <Navigation /> */}
     <AddTransaction/>
     </div>
   );

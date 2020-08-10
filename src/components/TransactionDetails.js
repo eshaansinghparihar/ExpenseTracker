@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper ,Container, Grid , CssBaseline, TextField ,Card,CardContent ,Avatar, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
 import AccountBalance from '@material-ui/icons/AccountBalanceWallet';
-import Navigation from './Navigation';
+import Loading from './Loading';
 const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(3),
@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
       paperBalance:{
         //   borderBottom:'10px solid #FFD700',
           margin:theme.spacing(2),
+          marginTop:theme.spacing(14),
           alignItems:'center',
           width:'100%',
           justifyContent:'center',
@@ -125,7 +126,7 @@ function TransactionDetails(){
           <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Paper item alignContent="center" spacing={2} elevation={8}>
-      <Grid container spacing={0} justify="center" className={classes.grid}>
+        <Grid container spacing={0} justify="center" className={classes.grid}>
         <Grid item xs={12} md={12} component={Card}>
           <CardContent item xs={12} md={12}>
             {transactionitem.type===1 ? (<Typography variant="h5" component="h2" color="primary">
@@ -134,8 +135,8 @@ function TransactionDetails(){
               {transactionitem.details}
             </Typography>)}
           </CardContent>
-        </Grid>
-        <Grid item xs={12} md={4} component={Card} >
+          </Grid>
+          <Grid item xs={12} md={4} component={Card} >
           <CardContent item xs={12} md={12}>
           <Typography color="textSecondary" gutterBottom>
               Amount
@@ -196,19 +197,41 @@ function TransactionDetails(){
 }
 function TransactionDetailsComponent(){
     const classes= useStyles();
-    return(
+    const uid=(firebase.auth().currentUser||{}).uid
+    const [displayName, setDisplayName]=useState('');
+    const [error, setError]=useState('');
+    if(uid){
+      firebase.firestore().collection("users").doc(uid).get()
+      .then(function(doc) {
+        if(doc.exists){
+          setDisplayName(doc.data().displayName)
+        }
+        })
+      .catch(error=>{
+        setError(error.message)
+      })
+    }
+      if(displayName){
+      return(
         // <div className={classes.container}>
         <div>
-            <Navigation />
+            {/* <Navigation /> */}
             <Balance/>
             <CssBaseline/>
             <Paper item alignContent="center" spacing={2} elevation={8} className={classes.message}>
             <CardContent>
-              <Typography variant="subtitle1" component="h4">Your Transactions Appear Below</Typography>
+            <Typography variant="subtitle1" component="h4">Hello ! <Typography variant="h6" component="h4">{displayName}</Typography> , Your Transactions Appear Below</Typography>
             </CardContent>
             </Paper>
             <TransactionDetails/>
         </div>
-    )
+    );
+    }
+    else{
+      return(
+        <Loading/>
+      );
+    }
+
 }
 export default TransactionDetailsComponent;
