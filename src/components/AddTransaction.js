@@ -1,11 +1,18 @@
 import React, { useEffect ,useState } from 'react';
 import firebase from 'firebase';
-import { Paper ,Container, Grid , CssBaseline, TextField, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
+import { Paper ,Container, Grid , CssBaseline, Avatar ,TextField, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Loading from './Loading';
-
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import Navigation from './Navigation';
 const useStyles = makeStyles((theme) => ({
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+    marginLeft:'auto',
+    marginRight:'auto'
+  },
   formControl: {
     width: '100%',
     marginTop: theme.spacing(2),
@@ -22,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -68,11 +75,16 @@ function AddTransaction(){
     <Container component="main" maxWidth="xs">
     <CssBaseline />
     <Paper item alignContent="center" spacing={2} elevation={8}>
+
     <div className={classes.paper}>
     <form className={classes.form} noValidate onSubmit={handleSubmit}>
+    <Avatar className={classes.avatar}>
+          <ReceiptIcon />
+    </Avatar>
           <Typography component="h5" variant="h6" color="primary">
             Add a Transaction
           </Typography>
+
         <TextField
             variant="outlined"
             margin="normal"
@@ -195,7 +207,10 @@ function AddTransactionComponent() {
 
 if(userid){
   return(
+    <div>
+    <Navigation />
     <AddTransaction/>
+    </div>
   );
 }
 else{
