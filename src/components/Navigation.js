@@ -48,7 +48,7 @@ class Navigation extends Component{
   render(){
     const { classes } = this.props;
     return (
-      (this.state.value!=='addtransaction')?(<div  className="float">
+      (this.state.value==='addtransaction' || this.state.value==='dashboard')?(
       <Paper item alignContent="center" elevation={8} spacing={2} className={classes.paper} >
         <Tabs variant="fullWidth" value={this.state.value} onChange={(event, newValue) => {this.setState({value:newValue});}} className={classes.root}>
         < Tab component={Link} label="Home" value="transaction" to='/' icon={<AccountBalance fontSize="small"/>}/>
@@ -61,7 +61,7 @@ class Navigation extends Component{
         {/* className={classes.Dashboard} */}
         </Tabs>
         </Paper>
-        </div>):(<Paper item alignContent="center" spacing={2} elevation={8} className={classes.paper} >
+        ):(<div  className="float"><Paper item alignContent="center" spacing={2} elevation={8} className={classes.paper} >
         <Tabs variant="fullWidth" value={this.state.value} onChange={(event, newValue) => {this.setState({value:newValue});}} className={classes.root}>
         <Tab component={Link} label="Home" value="transaction" to='/' icon={<AccountBalance fontSize="small"/>}/>
         <Tab component={Link} label="Daily" value="dailytransaction" to='/dailyTransaction' icon={<TodayIcon fontSize="small"/>}/>
@@ -72,7 +72,8 @@ class Navigation extends Component{
         <Tab component={Link} label="Profile" to='/dashboard' value="dashboard" icon={<DashboardIcon />} />
         {/* className={classes.Dashboard} */}
         </Tabs>
-        </Paper>)
+        </Paper>
+        </div>)
     );
   }
 
