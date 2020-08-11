@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper ,Container, Grid , CssBaseline, TextField ,Card,CardContent ,Avatar, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
 import Loading from './Loading';
+import AccountBalance from '@material-ui/icons/AccountBalanceWallet';
 
 const useStyles = makeStyles((theme) => ({
       container: {
@@ -18,13 +19,33 @@ const useStyles = makeStyles((theme) => ({
             marginBottom:theme.spacing(32)
           },
         card:{
-            marginTop:theme.spacing(14),
-            width:'45vh',
+            marginTop:theme.spacing(2),
+            width:'90%',
             marginLeft:'auto',
             marginRight:'auto',
             justifyContent:'center',
             alignItems:'center'
-          }
+          },
+          avatar: {
+          marginTop: theme.spacing(3),
+          backgroundColor: theme.palette.secondary.dark,
+          marginLeft:'auto',
+          marginRight:'auto',
+          // alignItems:'center',
+          // justifyItems:'center'
+          },
+          paperBalance:{
+          //   borderBottom:'10px solid #FFD700',
+              margin:theme.spacing(2),
+              marginTop:theme.spacing(14),
+              alignItems:'center',
+              width:'100%',
+              justifyContent:'center',
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              // minWidth:'100'
+          },
       }));
 
 function MonthlyTransactionDetails(){
@@ -58,7 +79,7 @@ function MonthlyTransactionDetails(){
     const MonthlyTransaction=transaction.map(transactionitem=>{
         if(transactionitem.createdAt>=firstDay && transactionitem.createdAt<=lastDay){
         return(
-        <Container component="main" maxWidth="xs">
+        <Container component="main">
         <CssBaseline />
         <Paper item alignContent="center" spacing={2} elevation={8} >
         <Grid container spacing={0} justify="center" className={classes.grid}>
@@ -131,10 +152,82 @@ function MonthlyTransactionDetails(){
         </div>
     )
 }
+function Balance(){
+  const classes = useStyles();
+  let date = new Date();
+  let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+  let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0); 
+  firstDay.setHours(0,0,0,0);
+  lastDay.setHours(23,59,59,999);
+  const [transaction, setTransaction]=useState([]);
+  const [error, setError]=useState('');
+   useEffect(()=>{
+    const uid=(firebase.auth().currentUser||{}).uid
+    if(uid){
+       firebase
+      .firestore()
+      .collection("users")
+      .doc(uid)
+      .get()
+      .then(function(doc) {
+        if(doc.exists){
+          setTransaction(doc.data().transaction)
+        }
+        })
+      .catch(error=>{
+        setError(error.message)
+      })
+    }
+  })
+  const monthlyData=transaction.filter((item)=>(item.createdAt>=firstDay && item.createdAt<=lastDay));
+  let creditbal=0;
+  let debitbal=0;
+  monthlyData.map(item=>{
+      if(item.type===1)
+      {
+          creditbal=creditbal+(item.amount*1)
+      }
+      if(item.type===-1)
+      {
+          debitbal=debitbal+(item.amount*1)
+      }
+  })
+  return(
+      <Container component="main">
+      <CssBaseline />
+      <Paper item alignContent="center" spacing={2} elevation={8}>
+      <div className={classes.paperBalance}>
+      <CardContent>
+      <Avatar className={classes.avatar}>
+            <AccountBalance />
+      </Avatar>
+      <Typography component="h3" variant="subtitle1" color="primary">
+        You have received
+      </Typography>
+      <br></br>
+      <Typography component="h4" variant="h4">
+           <i class="fa fa-inr"></i> {creditbal}
+      </Typography>
+      <Typography component="h3" variant="subtitle1" color="primary">
+        and have spent
+      </Typography>
+      <Typography component="h4" variant="h4">
+           <i class="fa fa-inr"></i> {debitbal}
+      </Typography>
+      <Typography component="h3" variant="subtitle2" color="primary">
+        as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
+      </Typography>
+      </CardContent>
+      </div>
+      </Paper>
+      </Container>
+  );
+}
 function MonthlyTransactionDetailsComponent(){
     const classes = useStyles();
     return(
         <div>
+        <Balance/>
         <Paper item alignContent="center" spacing={2} elevation={8} className={classes.card}>
             <CardContent>
             <Typography variant="subtitle1" component="h4">Your Monthly Transactions Appear Below</Typography>

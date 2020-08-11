@@ -72,7 +72,7 @@ function AddTransaction(){
     setCategory(e.target.value);
   }
   return(
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="md">
     <CssBaseline />
     <Paper item alignContent="center" spacing={2} elevation={8}>
 

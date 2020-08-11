@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
       },
       transactionCard:{
         //   height:'40vh',
-          width:'55vh',
+          width:'100vh',
           borderRadius:'50%',
           justifyContent:'center',
           alignItem:'center'
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop:theme.spacing(2),
         marginLeft:'auto',
         marginRight:'auto',
-        width:'45vh',
+        width:'90%',
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'center'
@@ -78,7 +78,7 @@ function Balance(){
       bal=bal+((item.amount)*(item.type))
     })
     return(
-    <Container component="main" maxWidth="xs">
+    <Container component="main">
     <CssBaseline />
     <Paper item alignContent="center" spacing={2} elevation={8}>
     <div className={classes.paperBalance}>
@@ -123,9 +123,9 @@ function TransactionDetails(){
     })
     const Transaction=transaction.map(transactionitem=>{
         return(
-          <Container component="main" maxWidth="xs">
+          <Container component="main" >
           <CssBaseline />
-          <Paper item alignContent="center" spacing={2} elevation={8}>
+          <Paper item alignContent="center" xs={12} md={4} spacing={2} elevation={8}>
         <Grid container spacing={0} justify="center" className={classes.grid}>
         <Grid item xs={12} md={12} component={Card}>
           <CardContent item xs={12} md={12}>
