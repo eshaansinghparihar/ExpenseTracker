@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import firebaseConfig from '../config';
+import { Link  ,Route, Redirect ,BrowserRouter, Switch} from 'react-router-dom';
 import Navigation from './Navigation';
+import SignIn from './Signin';
 import PieCredit from './PieCredit';
 import PieDebit from './PieDebit';
 import * as firebase from 'firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper ,Container, Grid , CssBaseline, TextField ,Card,CardContent ,Avatar, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
 import Loading from './Loading';
-
+import NoData from './NoData';
 const useStyles = makeStyles((theme) => ({
   paperBalance:{
     //   borderBottom:'10px solid #FFD700',
       margin:theme.spacing(2),
       // marginTop:theme.spacing(14),
+      marginLeft:'auto',
+      marginRight:'auto',
       alignItems:'center',
       width:'100%',
       justifyContent:'center',
@@ -20,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'row',
       alignItems: 'center',
       // minWidth:'100'
+  },
+  card:{
+    marginTop:theme.spacing(2),
+    width:'90%',
+    marginLeft:'auto',
+    marginRight:'auto',
+    justifyContent:'center',
+    alignItems:'center'
   },
   nodata:{
     //   borderBottom:'10px solid #FFD700',
@@ -287,19 +299,84 @@ function Dashboard() {
     }
     else{
       return(
-        <Container component="main">
-        <CssBaseline />
-        <Paper item alignContent="center" spacing={2} elevation={8}>
-        <div  className={classes.nodata}>
-        <CardContent>
-        <Typography component="h3" variant="subtitle2" color="primary">Data Unavailable, Either the data is being downloaded or isn't available. Try adding Transactions, if you haven't added one yet.</Typography>
-        </CardContent>
-        </div>
-        </Paper>
-        </Container>
+      <NoData/>
       )
     }
 
 }
+function handleSignOut(){
+  firebase.auth().signOut();
+  // return(
+  // <Switch>
+  // <Redirect from='/dashboard' to='/' />
+  // <Route path='/'>
+  //   <SignIn/>
+  // </Route>
+  // </Switch>
+  // )
+}
+function ProfileCard(){
+  const classes= useStyles();
+  const uid=(firebase.auth().currentUser||{}).uid
+  const [displayName, setDisplayName]=useState('');
+  const [error, setError]=useState('');
+  if(uid){
+    firebase.firestore().collection("users").doc(uid).get()
+    .then(function(doc) {
+      if(doc.exists){
+        setDisplayName(doc.data().displayName)
+      }
+      })
+    .catch(error=>{
+      setError(error.message)
+    })
+  }
+    if(displayName){
+    return(
+      // <div className={classes.container}>
+      <div>
+          {/* <Navigation /> */}
+          <CssBaseline/>
+          <Paper item alignContent="center" spacing={2} elevation={8} className={classes.card}>
+          <CardContent>
+          <Typography variant="subtitle1" component="h4"><h3>Hey ! </h3> <Typography variant="h6" component="h4"><h2>{displayName}</h2></Typography></Typography>
+          <Typography variant="subtitle1" component="h4"><h3>Hope you're day is going great !</h3></Typography>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+            onClick={handleSignOut}
+          >
+           Log Out
+          </Button>
+          </CardContent>
+          </Paper>
+      </div>
+  );
+  }
+  else{
+    return(
+      <Loading/>
+    );
+  }
 
-export default Dashboard;
+}
+
+function DashboardComponent() {
+  const classes= useStyles();
+  return(
+    <div>
+    <ProfileCard/>
+    <CssBaseline/>
+    <Paper item alignContent="center" spacing={2} elevation={8} className={classes.card}>
+    <CardContent>
+    <Typography variant="subtitle1" component="h4"><h3>Your Transaction Statistics Appear Below</h3></Typography>
+    </CardContent>
+    </Paper>
+    <Dashboard/>
+    </div>
+  );
+}
+export default DashboardComponent;

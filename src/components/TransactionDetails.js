@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper ,Container, Grid , CssBaseline, TextField ,Card,CardContent ,Avatar, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
 import AccountBalance from '@material-ui/icons/AccountBalanceWallet';
 import Loading from './Loading';
+import NoData from './NoData';
 const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(3),
@@ -211,16 +212,7 @@ function TransactionDetails(){
     }
     else{
       return(
-        <Container component="main">
-        <CssBaseline />
-        <Paper item alignContent="center" spacing={2} elevation={8}>
-        <div  className={classes.nodata}>
-        <CardContent>
-        <Typography component="h3" variant="subtitle2" color="primary">Data Unavailable, Either the data is being downloaded or isn't available. Try adding Transactions, if you haven't added one yet.</Typography>
-        </CardContent>
-        </div>
-        </Paper>
-        </Container>
+        <NoData/>
       )
     }
 }
@@ -249,7 +241,7 @@ function TransactionDetailsComponent(){
             <CssBaseline/>
             <Paper item alignContent="center" spacing={2} elevation={8} className={classes.message}>
             <CardContent>
-            <Typography variant="subtitle1" component="h4">Hello ! <Typography variant="h6" component="h4"><h2>{displayName}</h2></Typography> , Your Transactions Appear Below</Typography>
+            <Typography variant="subtitle1" component="h4"><h3>Hello ! </h3> <Typography variant="h6" component="h4"><h2>{displayName}</h2></Typography> <h3>Your Transactions Appear Below</h3> </Typography>
             </CardContent>
             </Paper>
             <TransactionDetails/>

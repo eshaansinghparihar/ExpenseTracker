@@ -57,7 +57,7 @@ class Navigation extends Component{
         <Tab component={Link} label="Add" value="addtransaction" to='/addTransaction' icon={<AddCircleIcon fontSize="small" />}  />
         {/* className={classes.AddCir}  */}
         <Tab component={Link} label="Monthly" to='/monthlyTransaction' value="monthlytransaction" icon={<CalendarViewDayIcon fontSize="small" />} />
-        <Tab component={Link} label="Profile" to='/dashboard' value="dashboard" icon={<DashboardIcon fontSize="small"/>} />
+        <Tab component={Link} label="Stats" to='/dashboard' value="dashboard" icon={<DashboardIcon fontSize="small"/>} />
         {/* className={classes.Dashboard} */}
         </Tabs>
         </Paper>
@@ -69,7 +69,7 @@ class Navigation extends Component{
         <Tab component={Link} label="Add" value="addtransaction" to='/addTransaction' icon={<AddCircleIcon fontSize="small"/>}  />
         {/* className={classes.AddCir}  */}
         <Tab component={Link} label="Monthly" to='/monthlyTransaction' value="monthlytransaction" icon={<CalendarViewDayIcon fontSize="small" />} />
-        <Tab component={Link} label="Profile" to='/dashboard' value="dashboard" icon={<DashboardIcon />} />
+        <Tab component={Link} label="Stats" to='/dashboard' value="dashboard" icon={<DashboardIcon />} />
         {/* className={classes.Dashboard} */}
         </Tabs>
         </Paper>
