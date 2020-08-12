@@ -12,6 +12,17 @@ const useStyles = makeStyles((theme) => ({
           alignItems: 'center',
           margin: theme.spacing(2),
       },
+      nodata:{
+        //   borderBottom:'10px solid #FFD700',
+          margin:theme.spacing(2),
+          alignItems:'center',
+          width:'100%',
+          justifyContent:'center',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          // minWidth:'100'
+      },
         grid:{
           marginBottom:theme.spacing(2)
         },
@@ -76,6 +87,7 @@ function MonthlyTransactionDetails(){
         })
       }
     })
+    if(transaction){
     const MonthlyTransaction=transaction.map(transactionitem=>{
         if(transactionitem.createdAt>=firstDay && transactionitem.createdAt<=lastDay){
         return(
@@ -151,6 +163,21 @@ function MonthlyTransactionDetails(){
             {MonthlyTransaction}
         </div>
     )
+    }
+    else{
+      return(
+        <Container component="main">
+        <CssBaseline />
+        <Paper item alignContent="center" spacing={2} elevation={8}>
+        <div  className={classes.nodata}>
+        <CardContent>
+        <Typography component="h3" variant="subtitle2" color="primary">Data Unavailable, Either the data is being downloaded or isn't available. Try adding Transactions, if you haven't added one yet.</Typography>
+        </CardContent>
+        </div>
+        </Paper>
+        </Container>
+      )
+    }
 }
 function Balance(){
   const classes = useStyles();
@@ -179,9 +206,11 @@ function Balance(){
       })
     }
   })
-  const monthlyData=transaction.filter((item)=>(item.createdAt>=firstDay && item.createdAt<=lastDay));
   let creditbal=0;
   let debitbal=0;
+  if(transaction){
+  const monthlyData=transaction.filter((item)=>(item.createdAt>=firstDay && item.createdAt<=lastDay));
+
   monthlyData.map(item=>{
       if(item.type===1)
       {
@@ -192,6 +221,7 @@ function Balance(){
           debitbal=debitbal+(item.amount*1)
       }
   })
+  }
   return(
       <Container component="main">
       <CssBaseline />
@@ -222,7 +252,7 @@ function Balance(){
       </Paper>
       </Container>
   );
-}
+  }
 function MonthlyTransactionDetailsComponent(){
     const classes = useStyles();
     return(

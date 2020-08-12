@@ -30,6 +30,17 @@ const useStyles = makeStyles((theme) => ({
           alignItems: 'center',
           // minWidth:'100'
       },
+      nodata:{
+        //   borderBottom:'10px solid #FFD700',
+          margin:theme.spacing(2),
+          alignItems:'center',
+          width:'100%',
+          justifyContent:'center',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          // minWidth:'100'
+      },
       transactionCard:{
         //   height:'40vh',
           width:'100vh',
@@ -192,12 +203,26 @@ function TransactionDetails(){
         </Container> 
         );
     }).reverse();
-    }
     return(
         <div className={classes.container}>
             {Transaction}
         </div>
     )
+    }
+    else{
+      return(
+        <Container component="main">
+        <CssBaseline />
+        <Paper item alignContent="center" spacing={2} elevation={8}>
+        <div  className={classes.nodata}>
+        <CardContent>
+        <Typography component="h3" variant="subtitle2" color="primary">Data Unavailable, Either the data is being downloaded or isn't available. Try adding Transactions, if you haven't added one yet.</Typography>
+        </CardContent>
+        </div>
+        </Paper>
+        </Container>
+      )
+    }
 }
 function TransactionDetailsComponent(){
     const classes= useStyles();
