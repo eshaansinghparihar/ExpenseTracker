@@ -241,7 +241,8 @@ function TransactionDetailsComponent(){
             <CssBaseline/>
             <Paper item alignContent="center" spacing={2} elevation={8} className={classes.message}>
             <CardContent>
-            <Typography variant="subtitle1" component="h4"><h3>Hello ! </h3> <Typography variant="h6" component="h4"><h2>{displayName}</h2></Typography> <h3>Your Transactions Appear Below</h3> </Typography>
+            <Typography variant="subtitle1" component="h4"><h3>Hello ! </h3> <Typography variant="h6" component="h4"><h2>{displayName}</h2></Typography>
+            <h3>All Your Transactions Appear Below</h3> </Typography>
             </CardContent>
             </Paper>
             <TransactionDetails/>

@@ -288,7 +288,7 @@ function Dashboard() {
           <Paper item alignContent="center" spacing={2} elevation={8}>
           <div className={classes.paperBalance}>
           <CardContent>
-          <h2>Daily Credit</h2>
+          <h2>Received Today</h2>
           <PieCredit data={dailyCredit}/>
           <Typography component="h3" variant="subtitle2" color="primary">
             on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
@@ -302,7 +302,7 @@ function Dashboard() {
           <Paper item alignContent="center" spacing={2} elevation={8}>
           <div className={classes.paperBalance}>
           <CardContent>
-          <h2>Daily Debit</h2>
+          <h2>Spent Today</h2>
           <PieDebit data={dailyDebit}/>
           <Typography component="h3" variant="subtitle2" color="primary">
             on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
@@ -316,7 +316,7 @@ function Dashboard() {
           <Paper item alignContent="center" spacing={2} elevation={8}>
           <div className={classes.paperBalance}>
           <CardContent>
-          <h2>Monthly Credit</h2>
+          <h2>Received This Month</h2>
           <PieCredit data={monthlyCredit} />
           <Typography component="h3" variant="subtitle2" color="primary">
           as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
@@ -330,7 +330,7 @@ function Dashboard() {
           <Paper item alignContent="center" spacing={2} elevation={8}>
           <div className={classes.paperBalance}>
           <CardContent>
-          <h2>Monthly Debit</h2>
+          <h2>Spent This Month</h2>
           <PieDebit data={monthlyDebit}/>
           <Typography component="h3" variant="subtitle2" color="primary">
           as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
@@ -344,7 +344,21 @@ function Dashboard() {
           <Paper item alignContent="center" spacing={2} elevation={8}>
           <div className={classes.paperBalance}>
           <CardContent>
-          <h2>Monthly Debit (Mode of Transaction)</h2>
+          <h2>Received This Month (Mode of Transaction)</h2>
+          <PieCreditMode data={monthlyCreditMode}/>
+          <Typography component="h3" variant="subtitle2" color="primary">
+          as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
+          </Typography>
+          </CardContent>
+          </div>
+          </Paper>
+          </Container>
+          <Container component="main">
+          <CssBaseline />
+          <Paper item alignContent="center" spacing={2} elevation={8}>
+          <div className={classes.paperBalance}>
+          <CardContent>
+          <h2>Spent This Month (Mode of Transaction)</h2>
           <PieDebitMode data={monthlyDebitMode}/>
           <Typography component="h3" variant="subtitle2" color="primary">
           as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
@@ -358,8 +372,10 @@ function Dashboard() {
           <Paper item alignContent="center" spacing={2} elevation={8}>
           <div className={classes.paperBalance}>
           <CardContent>
-          <h2>Monthly Credit (Mode of Transaction)</h2>
-          <PieCreditMode data={monthlyCreditMode}/>
+          <h2>Estimated Credit Card Bill for this month</h2>
+          <Typography component="h4" variant="h4">
+         <i class="fa fa-inr"></i> {monthlyDebitMode[1]-monthlyCreditMode[1]}
+          </Typography>
           <Typography component="h3" variant="subtitle2" color="primary">
           as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
           </Typography>
@@ -367,6 +383,22 @@ function Dashboard() {
           </div>
           </Paper>
           </Container>
+          {/* <Container component="main">
+          <CssBaseline />
+          <Paper item alignContent="center" spacing={2} elevation={8}>
+          <div className={classes.paperBalance}>
+          <CardContent>
+          <h2>Estimated Cash Available</h2>
+          <Typography component="h4" variant="h4">
+         <i class="fa fa-inr"></i> {monthlyCreditMode[3]-monthlyDebitMode[3]}
+          </Typography>
+          <Typography component="h3" variant="subtitle2" color="primary">
+          as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
+          </Typography>
+          </CardContent>
+          </div>
+          </Paper>
+          </Container> */}
       </div>
     );
     }

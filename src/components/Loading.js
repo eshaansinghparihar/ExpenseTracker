@@ -1,6 +1,7 @@
 import React from 'react';
 import firebaseConfig from '../config';
 import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles= makeStyles((theme)=>({
   container: {
@@ -16,7 +17,8 @@ function Loading() {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      Loading
+      <CircularProgress color="secondary"/>
+      <h3>Loading...</h3>
     </div>
   );
 }
