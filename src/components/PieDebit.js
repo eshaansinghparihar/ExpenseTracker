@@ -61,9 +61,8 @@ export default function PieChartDebit(props){
     }
     return (
       <div>
-        <h2>Debit</h2>
         <Pie data={data}  
-        height={180} 
+        height={300}
         options={{
           responsive: true,
           maintainAspectRatio: false,

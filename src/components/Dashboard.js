@@ -7,9 +7,25 @@ import * as firebase from 'firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper ,Container, Grid , CssBaseline, TextField ,Card,CardContent ,Avatar, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
 import Loading from './Loading';
+
+const useStyles = makeStyles((theme) => ({
+  paperBalance:{
+    //   borderBottom:'10px solid #FFD700',
+      margin:theme.spacing(2),
+      // marginTop:theme.spacing(14),
+      alignItems:'center',
+      width:'100%',
+      justifyContent:'center',
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      // minWidth:'100'
+  },
+}))
+
 function Dashboard() {
 
-  // const classes = useStyles();
+  const classes = useStyles();
     let date = new Date();
     let startOfToday = new Date(); 
     startOfToday.setHours(0,0,0,0);
@@ -198,15 +214,62 @@ function Dashboard() {
     const monthlyCredit=[inc,sal,pro];
   return (
     <div className="container">
-      {/* <Navigation/> */}
-      <h2>Daily</h2>
-      <PieCredit data={dailyCredit}/>
-      <h2>Daily</h2>
-      <PieDebit data={dailyDebit}/>
-      <h2>Monthly</h2>
-      <PieCredit data={monthlyCredit} />
-      <h2>Monthly</h2>
-      <PieDebit data={monthlyDebit}/>
+      <Container component="main">
+        <CssBaseline />
+        <Paper item alignContent="center" spacing={2} elevation={8}>
+        <div className={classes.paperBalance}>
+        <CardContent>
+        <h2>Daily Credit</h2>
+        <PieCredit data={dailyCredit}/>
+        <Typography component="h3" variant="subtitle2" color="primary">
+          on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
+        </Typography>
+        </CardContent>
+        </div>
+        </Paper>
+        </Container>
+        <Container component="main">
+        <CssBaseline />
+        <Paper item alignContent="center" spacing={2} elevation={8}>
+        <div className={classes.paperBalance}>
+        <CardContent>
+        <h2>Daily Debit</h2>
+        <PieDebit data={dailyDebit}/>
+        <Typography component="h3" variant="subtitle2" color="primary">
+          on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
+        </Typography>
+        </CardContent>
+        </div>
+        </Paper>
+        </Container>      
+        <Container component="main">
+        <CssBaseline />
+        <Paper item alignContent="center" spacing={2} elevation={8}>
+        <div className={classes.paperBalance}>
+        <CardContent>
+        <h2>Monthly Credit</h2>
+        <PieCredit data={monthlyCredit} />
+        <Typography component="h3" variant="subtitle2" color="primary">
+        as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
+        </Typography>
+        </CardContent>
+        </div>
+        </Paper>
+        </Container>
+        <Container component="main">
+        <CssBaseline />
+        <Paper item alignContent="center" spacing={2} elevation={8}>
+        <div className={classes.paperBalance}>
+        <CardContent>
+        <h2>Monthly Debit</h2>
+        <PieDebit data={monthlyDebit}/>
+        <Typography component="h3" variant="subtitle2" color="primary">
+        as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
+        </Typography>
+        </CardContent>
+        </div>
+        </Paper>
+        </Container>
     </div>
   );
 }

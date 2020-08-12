@@ -74,9 +74,11 @@ function Balance(){
      }
     })
     let bal=0;
-    transaction.map((item)=>{
-      bal=bal+((item.amount)*(item.type))
-    })
+    if(transaction){
+      transaction.map((item)=>{
+        bal=bal+((item.amount)*(item.type))
+      })
+    }
     return(
     <Container component="main">
     <CssBaseline />
@@ -121,7 +123,8 @@ function TransactionDetails(){
         })
       }
     })
-    const Transaction=transaction.map(transactionitem=>{
+    if(transaction){
+      const Transaction=transaction.map(transactionitem=>{
         return(
           <Container component="main" >
           <CssBaseline />
@@ -189,6 +192,7 @@ function TransactionDetails(){
         </Container> 
         );
     }).reverse();
+    }
     return(
         <div className={classes.container}>
             {Transaction}
@@ -220,7 +224,7 @@ function TransactionDetailsComponent(){
             <CssBaseline/>
             <Paper item alignContent="center" spacing={2} elevation={8} className={classes.message}>
             <CardContent>
-            <Typography variant="subtitle1" component="h4">Hello ! <Typography variant="h6" component="h4">{displayName}</Typography> , Your Transactions Appear Below</Typography>
+            <Typography variant="subtitle1" component="h4">Hello ! <Typography variant="h6" component="h4"><h2>{displayName}</h2></Typography> , Your Transactions Appear Below</Typography>
             </CardContent>
             </Paper>
             <TransactionDetails/>

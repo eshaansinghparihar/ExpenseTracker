@@ -34,9 +34,8 @@ export default function PieChartCrebit(props){
     }
     return (
       <div>
-        <h2>Credit</h2>
         <Pie data={data} 
-        height={100}  
+        height={150}  
         options={{
           responsive: true,
           maintainAspectRatio: false,
