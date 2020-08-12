@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import firebaseConfig from '../config';
-import { Link  ,Route, Redirect ,BrowserRouter, Switch} from 'react-router-dom';
-import Navigation from './Navigation';
-import SignIn from './Signin';
+// import firebaseConfig from '../config';
+// import { Link  ,Route, Redirect ,BrowserRouter, Switch} from 'react-router-dom';
+// import Navigation from './Navigation';
+// import SignIn from './Signin';
 import PieCredit from './PieCredit';
 import PieDebit from './PieDebit';
+import PieCreditMode from './PieCreditMode';
+import PieDebitMode from './PieDebitMode';
 import * as firebase from 'firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper ,Container, Grid , CssBaseline, TextField ,Card,CardContent ,Avatar, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
@@ -93,6 +95,16 @@ function Dashboard() {
       let inc=0;
       let sal=0;
       let pro=0;
+      let cre=0;
+      let deb=0;
+      let upi=0;
+      let cash=0;
+      let netb=0;
+      let crec=0;
+      let debc=0;
+      let upic=0;
+      let cashc=0;
+      let netbc=0;
       dailyData.map(item=>{
           if(item.type===-1)
           {
@@ -153,7 +165,6 @@ function Dashboard() {
       })
       const dailyDebit =[travel, food, bev, gro, sho, inv , bill, beauty, hh, sc, bk, clo, eg , oth];
       const dailyCredit=[inc,sal,pro];
-  
       let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
       let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0); 
       firstDay.setHours(0,0,0,0);
@@ -221,6 +232,22 @@ function Dashboard() {
               if(item.category=='Others'){
                 oth=oth+(item.amount*1)
               }
+              if(item.mode=='Credit Card'){
+                cre=cre+(item.amount*1)
+              }
+              if(item.mode=='Debit Card'){
+                deb=deb+(item.amount*1)
+              }
+              if(item.mode=='UPI'){
+                upi=upi+(item.amount*1)
+              }
+              if(item.mode=='Cash'){
+                cash=cash+(item.amount*1)
+              }
+              if(item.mode=='NetBanking'){
+                netb=netb+(item.amount*1)
+              }
+
           }
           if(item.type===1){
             if(item.category=='Income'){
@@ -232,10 +259,28 @@ function Dashboard() {
             if(item.category=='Profit'){
               pro=pro+(item.amount*1)
             }
+            if(item.mode=='Credit Card'){
+              crec=cre+(item.amount*1)
+            }
+            if(item.mode=='Debit Card'){
+              debc=debc+(item.amount*1)
+            }
+            if(item.mode=='UPI'){
+              upic=upic+(item.amount*1)
+            }
+            if(item.mode=='Cash'){
+              cashc=cashc+(item.amount*1)
+            }
+            if(item.mode=='NetBanking'){
+              netbc=netbc+(item.amount*1)
+            }
           }
       })
       const monthlyDebit =[travel, food, bev, gro, sho, inv , bill, beauty, hh, sc, bk, clo, eg , oth];
       const monthlyCredit=[inc,sal,pro];
+      const monthlyDebitMode=[deb,cre,upi,cash,netb];
+      const monthlyCreditMode=[debc,crec,upic,cashc,netbc];
+      // console.log(monthlyDebitMode[1]-monthlyCreditMode[1]);
     return (
       <div className="container">
         <Container component="main">
@@ -287,6 +332,34 @@ function Dashboard() {
           <CardContent>
           <h2>Monthly Debit</h2>
           <PieDebit data={monthlyDebit}/>
+          <Typography component="h3" variant="subtitle2" color="primary">
+          as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
+          </Typography>
+          </CardContent>
+          </div>
+          </Paper>
+          </Container>
+          <Container component="main">
+          <CssBaseline />
+          <Paper item alignContent="center" spacing={2} elevation={8}>
+          <div className={classes.paperBalance}>
+          <CardContent>
+          <h2>Monthly Debit (Mode of Transaction)</h2>
+          <PieDebitMode data={monthlyDebitMode}/>
+          <Typography component="h3" variant="subtitle2" color="primary">
+          as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
+          </Typography>
+          </CardContent>
+          </div>
+          </Paper>
+          </Container>
+          <Container component="main">
+          <CssBaseline />
+          <Paper item alignContent="center" spacing={2} elevation={8}>
+          <div className={classes.paperBalance}>
+          <CardContent>
+          <h2>Monthly Credit (Mode of Transaction)</h2>
+          <PieCreditMode data={monthlyCreditMode}/>
           <Typography component="h3" variant="subtitle2" color="primary">
           as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
           </Typography>
