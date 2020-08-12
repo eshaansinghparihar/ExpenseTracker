@@ -1,11 +1,10 @@
-import React, { useEffect ,useState } from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase';
-import { Paper ,Container, Grid , CssBaseline, Avatar ,TextField, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
+import { Paper ,Container , CssBaseline, Avatar ,TextField, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Loading from './Loading';
 import ReceiptIcon from '@material-ui/icons/Receipt';
-import Navigation from './Navigation';
 const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
@@ -19,8 +18,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight:theme.spacing(3)
   },
   form: {
-    // width: '100vh'
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(2),
     marginLeft:theme.spacing(3),
     marginRight:theme.spacing(3)
@@ -162,7 +160,6 @@ function AddTransaction(){
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {/* {mode === "credit" ? (<MenuItem value="income">Income</MenuItem>) : ('')} */}
           <MenuItem value="Income">Income</MenuItem>
           <MenuItem value="Salary">Salary</MenuItem>
           <MenuItem value="Profit">Profit</MenuItem>
@@ -208,7 +205,6 @@ function AddTransactionComponent() {
 if(userid){
   return(
     <div>
-    {/* <Navigation /> */}
     <AddTransaction/>
     </div>
   );

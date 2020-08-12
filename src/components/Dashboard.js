@@ -190,88 +190,88 @@ function Dashboard() {
       monthlyData.map(item=>{
           if(item.type===-1)
           {
-              if(item.category=='Travel'){
+              if(item.category==='Travel'){
                 travel=travel+(item.amount*1)
               }
-              if(item.category=='Food'){
+              if(item.category==='Food'){
                 food=food+(item.amount*1)
               }
-              if(item.category=='Grocery'){
+              if(item.category==='Grocery'){
                 gro=gro+(item.amount*1)
               }
-              if(item.category=='Beverage'){
+              if(item.category==='Beverage'){
                 bev=bev+(item.amount*1)
               }
-              if(item.category=='Shopping'){
+              if(item.category==='Shopping'){
                 sho=sho+(item.amount*1)
               }
-              if(item.category=='Investment'){
+              if(item.category==='Investment'){
                 inv=inv+(item.amount*1)
               }
-              if(item.category=='Bill Payment'){
+              if(item.category==='Bill Payment'){
                 bill=bill+(item.amount*1)
               }
-              if(item.category=='Beauty'){
+              if(item.category==='Beauty'){
                 beauty=beauty+(item.amount*1)
               }
-              if(item.category=='Household'){
+              if(item.category==='Household'){
                 hh=hh+(item.amount*1)
               }
-              if(item.category=='Self Care'){
+              if(item.category==='Self Care'){
                 sc=sc+(item.amount*1)
               }
-              if(item.category=='Book'){
+              if(item.category==='Book'){
                 bk=bk+(item.amount*1)
               }
-              if(item.category=='Clothing'){
+              if(item.category==='Clothing'){
                 clo=clo+(item.amount*1)
               }
-              if(item.category=='Electronics & Gadgets'){
+              if(item.category==='Electronics & Gadgets'){
                 eg=eg+(item.amount*1)
               }
-              if(item.category=='Others'){
+              if(item.category==='Others'){
                 oth=oth+(item.amount*1)
               }
-              if(item.mode=='Credit Card'){
+              if(item.mode==='Credit Card'){
                 cre=cre+(item.amount*1)
               }
-              if(item.mode=='Debit Card'){
+              if(item.mode==='Debit Card'){
                 deb=deb+(item.amount*1)
               }
-              if(item.mode=='UPI'){
+              if(item.mode==='UPI'){
                 upi=upi+(item.amount*1)
               }
-              if(item.mode=='Cash'){
+              if(item.mode==='Cash'){
                 cash=cash+(item.amount*1)
               }
-              if(item.mode=='NetBanking'){
+              if(item.mode==='NetBanking'){
                 netb=netb+(item.amount*1)
               }
 
           }
           if(item.type===1){
-            if(item.category=='Income'){
+            if(item.category==='Income'){
               inc=inc+(item.amount*1)
             }
-            if(item.category=='Salary'){
+            if(item.category==='Salary'){
               sal=sal+(item.amount*1)
             }
-            if(item.category=='Profit'){
+            if(item.category==='Profit'){
               pro=pro+(item.amount*1)
             }
-            if(item.mode=='Credit Card'){
+            if(item.mode==='Credit Card'){
               crec=cre+(item.amount*1)
             }
-            if(item.mode=='Debit Card'){
+            if(item.mode==='Debit Card'){
               debc=debc+(item.amount*1)
             }
-            if(item.mode=='UPI'){
+            if(item.mode==='UPI'){
               upic=upic+(item.amount*1)
             }
-            if(item.mode=='Cash'){
+            if(item.mode==='Cash'){
               cashc=cashc+(item.amount*1)
             }
-            if(item.mode=='NetBanking'){
+            if(item.mode==='NetBanking'){
               netbc=netbc+(item.amount*1)
             }
           }
