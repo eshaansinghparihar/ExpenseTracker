@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Paper, ThemeProvider, Tab ,Tabs} from '@material-ui/core';
+import { Paper, Tab ,Tabs} from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import TodayIcon from '@material-ui/icons/Today';
 import AccountBalance from '@material-ui/icons/AccountBalanceWallet';

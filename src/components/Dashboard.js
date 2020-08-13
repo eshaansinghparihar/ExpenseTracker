@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
-// import firebaseConfig from '../config';
-// import { Link  ,Route, Redirect ,BrowserRouter, Switch} from 'react-router-dom';
-// import Navigation from './Navigation';
-// import SignIn from './Signin';
 import PieCredit from './PieCredit';
 import PieDebit from './PieDebit';
 import PieCreditMode from './PieCreditMode';
 import PieDebitMode from './PieDebitMode';
 import * as firebase from 'firebase';
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper ,Container, Grid , CssBaseline, TextField ,Card,CardContent ,Avatar, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
+import { Paper ,Container, CssBaseline,CardContent , Button, Typography } from '@material-ui/core';
 import Loading from './Loading';
 import NoData from './NoData';
 const useStyles = makeStyles((theme) => ({
   paperBalance:{
-    //   borderBottom:'10px solid #FFD700',
       margin:theme.spacing(2),
-      // marginTop:theme.spacing(14),
       marginLeft:'auto',
       marginRight:'auto',
       alignItems:'center',
@@ -25,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
-      // minWidth:'100'
   },
   card:{
     marginTop:theme.spacing(2),
@@ -36,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems:'center'
   },
   nodata:{
-    //   borderBottom:'10px solid #FFD700',
       margin:theme.spacing(2),
       alignItems:'center',
       width:'100%',
@@ -44,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
-      // minWidth:'100'
   },
 }))
 
@@ -108,57 +99,57 @@ function Dashboard() {
       dailyData.map(item=>{
           if(item.type===-1)
           {
-              if(item.category=='Travel'){
+              if(item.category==='Travel'){
                 travel=travel+(item.amount*1)
               }
-              if(item.category=='Food'){
+              if(item.category==='Food'){
                 food=food+(item.amount*1)
               }
-              if(item.category=='Grocery'){
+              if(item.category==='Grocery'){
                 gro=gro+(item.amount*1)
               }
-              if(item.category=='Beverage'){
+              if(item.category==='Beverage'){
                 bev=bev+(item.amount*1)
               }
-              if(item.category=='Shopping'){
+              if(item.category==='Shopping'){
                 sho=sho+(item.amount*1)
               }
-              if(item.category=='Investment'){
+              if(item.category==='Investment'){
                 inv=inv+(item.amount*1)
               }
-              if(item.category=='Bill Payment'){
+              if(item.category==='Bill Payment'){
                 bill=bill+(item.amount*1)
               }
-              if(item.category=='Beauty'){
+              if(item.category==='Beauty'){
                 beauty=beauty+(item.amount*1)
               }
-              if(item.category=='Household'){
+              if(item.category==='Household'){
                 hh=hh+(item.amount*1)
               }
-              if(item.category=='Self Care'){
+              if(item.category==='Self Care'){
                 sc=sc+(item.amount*1)
               }
-              if(item.category=='Book'){
+              if(item.category==='Book'){
                 bk=bk+(item.amount*1)
               }
-              if(item.category=='Clothing'){
+              if(item.category==='Clothing'){
                 clo=clo+(item.amount*1)
               }
-              if(item.category=='Electronics & Gadgets'){
+              if(item.category==='Electronics & Gadgets'){
                 eg=eg+(item.amount*1)
               }
-              if(item.category=='Others'){
+              if(item.category==='Others'){
                 oth=oth+(item.amount*1)
               }
           }
           if(item.type===1){
-            if(item.category=='Income'){
+            if(item.category==='Income'){
               inc=inc+(item.amount*1)
             }
-            if(item.category=='Salary'){
+            if(item.category==='Salary'){
               sal=sal+(item.amount*1)
             }
-            if(item.category=='Profit'){
+            if(item.category==='Profit'){
               pro=pro+(item.amount*1)
             }
           }
@@ -280,7 +271,6 @@ function Dashboard() {
       const monthlyCredit=[inc,sal,pro];
       const monthlyDebitMode=[deb,cre,upi,cash,netb];
       const monthlyCreditMode=[debc,crec,upic,cashc,netbc];
-      // console.log(monthlyDebitMode[1]-monthlyCreditMode[1]);
     return (
       <div className="container">
         <Container component="main">
@@ -383,22 +373,6 @@ function Dashboard() {
           </div>
           </Paper>
           </Container>
-          {/* <Container component="main">
-          <CssBaseline />
-          <Paper item alignContent="center" spacing={2} elevation={8}>
-          <div className={classes.paperBalance}>
-          <CardContent>
-          <h2>Estimated Cash Available</h2>
-          <Typography component="h4" variant="h4">
-         <i class="fa fa-inr"></i> {monthlyCreditMode[3]-monthlyDebitMode[3]}
-          </Typography>
-          <Typography component="h3" variant="subtitle2" color="primary">
-          as on {new Intl.DateTimeFormat('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}).format(Date.now())}
-          </Typography>
-          </CardContent>
-          </div>
-          </Paper>
-          </Container> */}
       </div>
     );
     }
@@ -411,14 +385,6 @@ function Dashboard() {
 }
 function handleSignOut(){
   firebase.auth().signOut();
-  // return(
-  // <Switch>
-  // <Redirect from='/dashboard' to='/' />
-  // <Route path='/'>
-  //   <SignIn/>
-  // </Route>
-  // </Switch>
-  // )
 }
 function ProfileCard(){
   const classes= useStyles();
@@ -438,9 +404,7 @@ function ProfileCard(){
   }
     if(displayName){
     return(
-      // <div className={classes.container}>
       <div>
-          {/* <Navigation /> */}
           <CssBaseline/>
           <Paper item alignContent="center" spacing={2} elevation={8} className={classes.card}>
           <CardContent>

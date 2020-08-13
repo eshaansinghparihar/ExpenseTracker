@@ -1,7 +1,6 @@
 import React from 'react';
-import firebaseConfig from '../config';
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper ,Container, Grid , CssBaseline, TextField ,Card,CardContent ,Avatar, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
+import { Paper ,Container, CssBaseline, CardContent ,Avatar, Typography } from '@material-ui/core';
 import NetworkCheckIcon from '@material-ui/icons/NetworkCheck';
 
 const useStyles= makeStyles((theme)=>({

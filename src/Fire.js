@@ -57,5 +57,5 @@ class Fire{
         firebase.auth().signOut();
     };
 }
-Fire.shared=new Fire;
+Fire.shared=new Fire();
 export default Fire;

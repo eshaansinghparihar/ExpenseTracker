@@ -1,4 +1,4 @@
-import React ,{ useState, useEffect, Component }from 'react';
+import React ,{  Component }from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,7 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';import Typography from '@material-ui/core/Typography';
 import { withStyles } from "@material-ui/core/styles";
 import Container from '@material-ui/core/Container';
-import * as firebase from 'firebase';
 import Fire from "../Fire";
 
 

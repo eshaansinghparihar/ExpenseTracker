@@ -1,7 +1,11 @@
-var CACHE_NAME = 'pwa-task-manager';
+var CACHE_NAME = 'expense-tracker';
 var urlsToCache = [
   '/',
-  '/completed'
+  '/signup',
+  '/addTransaction',
+  '/dailyTransaction',
+  '/monthlyTransaction',
+  '/dashboard'
 ];
 
 // Install a service worker
@@ -33,7 +37,7 @@ self.addEventListener('fetch', event => {
 
 // Update a service worker
 self.addEventListener('activate', event => {
-  var cacheWhitelist = ['pwa-task-manager'];
+  var cacheWhitelist = ['expense-tracker'];
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
@@ -46,3 +50,14 @@ self.addEventListener('activate', event => {
     })
   );
 });
+
+// let deferredPrompt;
+
+// window.addEventListener('beforeinstallprompt', (e) => {
+//   // Prevent the mini-infobar from appearing on mobile
+//   e.preventDefault();
+//   // Stash the event so it can be triggered later.
+//   deferredPrompt = e;
+//   // Update UI notify the user they can install the PWA
+//   showInstallPromotion();
+// });

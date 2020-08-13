@@ -1,9 +1,4 @@
-// import React, { useState, useEffect } from 'react';
-// import * as firebase from 'firebase';
-// import { makeStyles } from '@material-ui/core/styles';
-// import { Paper ,Container, Grid , CssBaseline, TextField ,Card,CardContent ,Avatar, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
-// import Loading from './Loading';
-import React , { Component } from 'react';
+import React  from 'react';
 import {Pie} from 'react-chartjs-2';
 
 

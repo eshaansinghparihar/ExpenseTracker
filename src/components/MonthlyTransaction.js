@@ -1,8 +1,7 @@
 import React , { useEffect, useState } from 'react';
 import * as firebase from 'firebase';
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper ,Container, Grid , CssBaseline, TextField ,Card,CardContent ,Avatar, Button, Typography , InputLabel, Select , MenuItem, FormControl} from '@material-ui/core';
-import Loading from './Loading';
+import { Paper ,Container, Grid , CssBaseline, Card,CardContent ,Avatar, Typography } from '@material-ui/core';
 import AccountBalance from '@material-ui/icons/AccountBalanceWallet';
 import NoData from './NoData';
 const useStyles = makeStyles((theme) => ({
@@ -42,11 +41,8 @@ const useStyles = makeStyles((theme) => ({
           backgroundColor: theme.palette.secondary.dark,
           marginLeft:'auto',
           marginRight:'auto',
-          // alignItems:'center',
-          // justifyItems:'center'
           },
           paperBalance:{
-          //   borderBottom:'10px solid #FFD700',
               margin:theme.spacing(2),
               marginTop:theme.spacing(14),
               alignItems:'center',
@@ -55,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center',
-              // minWidth:'100'
           },
       }));
 
