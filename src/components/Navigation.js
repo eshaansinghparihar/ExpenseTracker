@@ -17,23 +17,7 @@ const styles = (theme) => ({
     },
     marginLeft:'auto',
     marginRight:'auto',
-    // left:'auto',
-    // right:'auto'
-    // margin:
   },
-  paper: {
-    // marginRight:'auto',
-    // marginLeft:'auto',
-  },
-  AccBal:{
-    color:theme.palette.primary.main
-  },
-  AddCir:{
-    color:theme.palette.secondary.main
-  },
-  Dashboard:{
-    color:theme.palette.primary.light
-  }
 })
 
 class Navigation extends Component{
@@ -41,35 +25,29 @@ class Navigation extends Component{
   constructor(props){
     super(props);
     this.state={
-      value:'transaction'
+      value: window.location.pathname
     }
   }
   render(){
     const { classes } = this.props;
     return (
-      (this.state.value==='addtransaction' || this.state.value==='dashboard')?(
+      (this.state.value==='/addTransaction' || this.state.value==='/dashboard')?(
       <Paper item alignContent="center" elevation={8} spacing={2} className={classes.paper} >
         <Tabs variant="fullWidth" value={this.state.value} onChange={(event, newValue) => {this.setState({value:newValue});}} className={classes.root}>
-        < Tab component={Link} label="Home" value="transaction" to='/' icon={<AccountBalance fontSize="small"/>}/>
-        <Tab component={Link} label="Daily" value="dailytransaction" to='/dailyTransaction' icon={<TodayIcon fontSize="small"/>}/>
-        {/* className={classes.AccBal}/>}  */}
-        <Tab component={Link} label="Add" value="addtransaction" to='/addTransaction' icon={<AddCircleIcon fontSize="small" />}  />
-        {/* className={classes.AddCir}  */}
-        <Tab component={Link} label="Monthly" to='/monthlyTransaction' value="monthlytransaction" icon={<CalendarViewDayIcon fontSize="small" />} />
-        <Tab component={Link} label="Profile" to='/dashboard' value="dashboard" icon={<DashboardIcon fontSize="small"/>} />
-        {/* className={classes.Dashboard} */}
+        < Tab component={Link} label="Home" value="/" to='/' icon={<AccountBalance fontSize="small"/>}/>
+        <Tab component={Link} label="Daily" value="/dailyTransaction" to='/dailyTransaction' icon={<TodayIcon fontSize="small"/>}/>
+        <Tab component={Link} label="Add" value="/addTransaction" to='/addTransaction' icon={<AddCircleIcon fontSize="small" />}  />
+        <Tab component={Link} label="Monthly" to='/monthlyTransaction' value="/monthlyTransaction" icon={<CalendarViewDayIcon fontSize="small" />} />
+        <Tab component={Link} label="Profile" to='/dashboard' value="/dashboard" icon={<DashboardIcon fontSize="small"/>} />
         </Tabs>
         </Paper>
         ):(<div  className="float"><Paper item alignContent="center" spacing={2} elevation={8} className={classes.paper} >
         <Tabs variant="fullWidth" value={this.state.value} onChange={(event, newValue) => {this.setState({value:newValue});}} className={classes.root}>
-        <Tab component={Link} label="Home" value="transaction" to='/' icon={<AccountBalance fontSize="small"/>}/>
-        <Tab component={Link} label="Daily" value="dailytransaction" to='/dailyTransaction' icon={<TodayIcon fontSize="small"/>}/>
-        {/* className={classes.AccBal}/>}  */}
-        <Tab component={Link} label="Add" value="addtransaction" to='/addTransaction' icon={<AddCircleIcon fontSize="small"/>}  />
-        {/* className={classes.AddCir}  */}
-        <Tab component={Link} label="Monthly" to='/monthlyTransaction' value="monthlytransaction" icon={<CalendarViewDayIcon fontSize="small" />} />
-        <Tab component={Link} label="Profile" to='/dashboard' value="dashboard" icon={<DashboardIcon />} />
-        {/* className={classes.Dashboard} */}
+        <Tab component={Link} label="Home" value="/" to='/' icon={<AccountBalance fontSize="small"/>}/>
+        <Tab component={Link} label="Daily" value="/dailyTransaction" to='/dailyTransaction' icon={<TodayIcon fontSize="small"/>}/>
+        <Tab component={Link} label="Add" value="/addTransaction" to='/addTransaction' icon={<AddCircleIcon fontSize="small"/>}  />
+        <Tab component={Link} label="Monthly" to='/monthlyTransaction' value="/monthlyTransaction" icon={<CalendarViewDayIcon fontSize="small" />} />
+        <Tab component={Link} label="Profile" to='/dashboard' value="/dashboard" icon={<DashboardIcon />} />
         </Tabs>
         </Paper>
         </div>)
